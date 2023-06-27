@@ -5,7 +5,23 @@ using namespace std;
 #define for0(i, n) for(int i=0; i<n; i++)
 #define nn '\n'
 
+// recursive approach 
 bool subset_sum(int n, vector<int>&v, int sum)
+{
+    if(sum==0) return true;
+    
+    if(n==0) return false;
+    
+    if(v[n-1]<=sum)
+    {
+        return subset_sum(n-1, v, sum-v[n-1]) || subset_sum(n-1, v, sum);
+    }
+    
+    else return subset_sum(n-1, v, sum);
+}
+
+// top down approach 
+bool subset_sum2(int n, vector<int>&v, int sum)
 {
     int dp[n+1][sum+1];
 
@@ -78,4 +94,8 @@ input
 3 34 4 12 5 2
 6 30
 3 34 4 5 12 2
+
+output 
+YES
+NO 
 */
