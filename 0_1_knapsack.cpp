@@ -5,7 +5,23 @@ using namespace std;
 #define for0(i, n) for(int i=0; i<n; i++)
 #define nn '\n'
 
+// recursive approach 
 int knapsack(int n, vector<int>&wt, vector<int>&val, int W)
+{
+    // base condition 
+    
+    if(n==0 || W==0) return 0;
+    
+    // choice 
+    
+    if(wt[n-1]<=W)
+    return max(knapsack(n-1, wt, val, W), val[n-1]+knapsack(n-1, wt, val, W-wt[n-1]));
+    
+    else return knapsack(n-1, wt, val, W);
+}
+
+// top down approach 
+int knapsack2(int n, vector<int>&wt, vector<int>&val, int W)
 {
     int dp[n+1][W+1];
 
@@ -45,7 +61,8 @@ void solve()
 
     for0(i, n) cin >> val[i];
 
-    int ans=knapsack(n, wt, val, W);
+    int ans=knapsack(n, wt, val, W); // recursive 
+    int ans2=knapsack2(n, wt, val, W); // top down 
 
     cout << ans << nn;
 }
@@ -81,4 +98,8 @@ input
 3 3
 4 5 6
 1 2 3
+
+output
+3 
+0
 */
