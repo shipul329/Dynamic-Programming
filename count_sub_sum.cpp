@@ -37,14 +37,14 @@ int count_sub_sum2(int n, vector<int>&v, int sum)
             
             if(j==0) dp[i][j]=1;
         }
-    }
+    } 
     
     // choices 
     for1(i, n)
     {
         for0(j, sum+1)
         {
-            if(v[i-1]<=j && v[i-1]!=-1) // include of exclude 
+            if(v[i-1]<=j && v[i-1]!=-1) // include or exclude 
             {
                 dp[i][j]=dp[i-1][j] + dp[i-1][j-v[i-1]];
             }
