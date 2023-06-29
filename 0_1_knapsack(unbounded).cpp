@@ -1,4 +1,3 @@
-// this problem is almost similar with count minimum subset sum difference 
 #include<bits/stdc++.h>
 
 using namespace std;
