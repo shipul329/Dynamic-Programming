@@ -1,0 +1,103 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define for0(i, n) for(int i=0; i<n; i++)
+#define for1(i, n) for(int i=1; i<=n; i++)
+#define all(v) v.begin(), v.end()
+#define pb push_back
+#define nn '\n' 
+
+// recursive approach
+int lcs(string s, string s2, int n, int m)
+{
+    // base condition
+
+    if(n==0 || m==0)
+        return 0;
+
+    if(s[n-1]==s2[m-1])
+    {
+        return 1+lcs(s, s2, n-1, m-1);
+    }
+
+    else{
+        return max(lcs(s, s2, n-1, m), lcs(s, s2, n, m-1));
+    }
+}
+
+// top-down approach
+int lcs2(string s, string s2, int n, int m)
+{
+    int dp[n+1][m+1];
+
+    // base condition
+
+    for0(i, n+1)
+    {
+        for0(j, m+1)
+        {
+            if(i==0 || j==0)
+                dp[i][j]=0;
+        }
+    }
+
+    // from choice diagram 
+    for1(i, n)
+    {
+        for1(j, m)
+        {
+            if(s[i-1]==s2[j-1])
+            {
+                dp[i][j]=1+dp[i-1][j-1];
+            }
+
+            else{
+                dp[i][j]=max(dp[i-1][j], dp[i][j-1]);
+            }
+        }
+    }
+
+    return dp[n][m];
+}
+
+void solve()
+{
+    string s, s2;
+    cin >> s >> s2;
+
+    int n=s.size(), m=s2.size();
+
+    int ans=lcs(s, s2, n, m);
+    int ans2=lcs2(s, s2, n, m);
+
+    cout << ans << " " << ans2 << nn;
+}
+
+int32_t main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    int t;
+    cin >> t;
+
+    while(t--)
+    {
+        solve();
+    }
+
+    return 0;
+}
+
+/*
+input 
+2
+AGGTAB GXTXAYB
+ABCDGH AEDFHR
+
+output
+4 
+3 
+*/
