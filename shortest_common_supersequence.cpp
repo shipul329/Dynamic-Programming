@@ -30,9 +30,9 @@ int lcs2(string s, string s2, int n, int m)
     int dp[n+1][m+1];
 
     // base condition 
-    for0(i, n)
+    for0(i, n+1)
     {
-        for0(j, m)
+        for0(j, m+1)
         {
             if(i==0 || j==0)
             dp[i][j]=0;
