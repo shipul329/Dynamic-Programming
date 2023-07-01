@@ -46,7 +46,7 @@ int lcs2(vector<int>&v, vector<int>&v2, int n, int m)
         {
             if(v[i-1]==v2[j-1])
             {
-                dp[i][j]=1+dp[i-1][j];
+                dp[i][j]=1+dp[i-1][j-1];
             }
             
             else{
